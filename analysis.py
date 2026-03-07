@@ -7,7 +7,7 @@ def main():
     housing_data = pd.read_csv("Housing_Unit_Data.csv")
     report(housing_data)
 
-    income_data = pd.read_csv("Income_Data.csv")
+    income_data = pd.read_csv("income.csv")
     report(income_data)
 
     agesex_data = pd.read_csv("Age and Sex.csv")
@@ -15,17 +15,21 @@ def main():
     
 def report(df):
     #2. Inspect structure
+    print("---------------------")
+    print("--DataFrame Structure:--")
     rows = df.shape[0]
     columns = df.shape[1]
     print(f"Rows: {rows}, Columns: {columns}")
-    print(df.head()) # Display the first 5 rows of the DataFrame
+    df.head() # Display the first 5 rows of the DataFrame
     df.info() # Display summary information about the DataFrame, including data types and non-null counts
     
     #3. Check data quality
-    print("---------------------")
+    print("\n--Checking for missing values--\n")
     print(df.isna().sum())
     print(df.describe())
+
     #4. Validate keys
+    print("---------------------")
 
 if __name__ == "__main__":
     main()
