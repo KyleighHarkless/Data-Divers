@@ -17,13 +17,13 @@ def report(df):
     #2. Inspect structure
     print("--DataFrame Structure:--")
     
-    df.head(3) # Display the first 3 rows of the DataFrame
+    df.head(5) # Display the first 5 rows of the DataFrame
     df.info() # Display summary information about the DataFrame, including data types and non-null counts
     
     #3. Check data quality
-    print("\n--Checking for missing values--\n")
-    print(f"Check for missing Values: {df.isna().sum()}")
-    print(f"Summary Stats: \n{df.describe()}")
+    print("\n--Checking quality--\n")
+    print(f"# of Missing Values: \n{df.isna().sum()}")
+    print(f"\nSummary Stats: \n{df.describe()}")
 
     #4. Validate keys
     print("---------------------")
