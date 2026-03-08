@@ -4,15 +4,14 @@ import csv
 
 def main():
     #1. Load exported data
-    housing_data = pd.read_csv("Housing_Unit_Data.csv")
+    # housing_data = pd.read_csv("Housing_Unit_Data.csv")
     # report(housing_data)
-    get_columns(housing_data)
+    
+    income_data = pd.read_csv("income.csv")
+    report(income_data)
 
-    # income_data = pd.read_csv("income.csv")
-    # report(income_data)
-
-    # agesex_data = pd.read_csv("Age and Sex.csv")
-    # report(agesex_data)
+    agesex_data = pd.read_csv("Age and Sex.csv")
+    report(agesex_data)
     
 def report(df):
     print("\t--DataFrame Structure:--\n")
@@ -30,22 +29,28 @@ def inspect_structure(df):
     df.info() # Display summary information about the DataFrame, including data types and non-null counts
 
 def check_quality(df):
-    print(f"Columns: !!!{df.columns}")
+    columns = get_columns(df)
+    for col in columns:
+        df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    df["Lumberton city, North Carolina!!Estimate"] = pd.to_numeric(df["Lumberton city, North Carolina!!Estimate"], errors="coerce")
     print(f"# of Missing Values: \n{df.isna().sum()}")
-    print(f"\nSummary Stats: \n{df.describe()}")
+    print(f"\nSummary Stats: \n{df.describe().round(2)}")
 
 def validate_keys(df):
-    #4. Validate keys
-    pass
+    #Check for duplicate keys
+    if df.duplicated().any():
+        print("Duplicate keys found and removedg.")
+        df = df.drop_duplicates()
+    else:
+        print("No duplicate keys found.")
 
 def get_columns(df):
     columns = []
     for col in df.columns:
-        if col.startswith("Label"):
+        if col.startswith("Label") or col.endswith("Margin of Error"):
             continue
         columns.append(col)
+    
     return columns
 
 if __name__ == "__main__":
