@@ -12,6 +12,10 @@ def main():
 
     agesex_data = pd.read_csv("Age and Sex.csv")
     report(agesex_data)
+
+    housing_data = pd.read_csv("robeson_housing.csv")
+    report(housing_data)
+
     
 def report(df):
     print("\t--DataFrame Structure:--\n")
@@ -55,3 +59,4 @@ def get_columns(df):
 
 if __name__ == "__main__":
     main()
+
