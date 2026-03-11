@@ -1,23 +1,36 @@
 import pandas as pd
 import matplotlib.pyplot as plot
-import csv
 
 def main():
     #1. Load exported data
-    # housing_data = pd.read_csv("Housing_Unit_Data.csv")
-    # report(housing_data)
-    
     income_data = pd.read_csv("income.csv")
     report(income_data)
 
-    agesex_data = pd.read_csv("Age and Sex.csv")
-    report(agesex_data)
+    age_sex_data = pd.read_csv("Age and Sex.csv")
+    report(age_sex_data)
 
     housing_data = pd.read_csv("robeson_housing.csv")
     report(housing_data)
 
+    industry_data = pd.read_csv("industry_by_sex.csv")
+    report(industry_data)  
+
+    finance_civilian_data = pd.read_csv("financial_characteristics.csv")
+    report(finance_civilian_data)
+
+    housing_finance_data = pd.read_csv("financial_character_housing.csv")
+    report(housing_finance_data)
+
+    race_demographics = pd.read_csv("RACE.csv")
+    report(race_demographics)
+
+    transport_data = pd.read_csv("transportation.csv")
+    report(transport_data)
+
+    occupants_per_room = pd.read_csv("occupants_per_room.csv")
+    report(occupants_per_room)
     
-def report(df):
+def report(df, ):
     print("\t--DataFrame Structure:--\n")
     inspect_structure(df)
 
